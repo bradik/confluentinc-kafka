@@ -2,6 +2,7 @@
 version: '2'
 services:
   schema-registry:
+    container_name: schema-registry
     image: confluentinc/cp-schema-registry:4.0.0
     depends_on:
       - zookeeper
@@ -12,6 +13,7 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8081
   
   kafka-rest:
+    container_name: kafka-rest
     image: confluentinc/cp-kafka-rest:4.0.0
     depends_on:
       - zookeeper
@@ -24,6 +26,7 @@ services:
       KAFKA_REST_HOST_NAME: kafka
 
   kafka-topics:
+    container_name: kafka-topics
     image: landoop/kafka-topics-ui:latest
     depends_on:
       - zookeeper
@@ -38,6 +41,7 @@ services:
 
 
   zookeeper:
+    container_name: zookeeper
     image: confluentinc/cp-zookeeper:latest
     ports:
       - 2181:2181    
@@ -46,6 +50,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
+    container_name: kafka
     image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper
